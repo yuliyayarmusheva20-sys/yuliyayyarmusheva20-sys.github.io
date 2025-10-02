@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Визитка — Имя Фамилия</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#1a0f0d;
+      --card:#261914;
+      --accent1:#c47f2a; /* осенний оранжево-золотой */
+      --accent2:#7b3f00; /* коричневый */
+      --muted:rgba(250,232,210,0.85);
+      --glass: rgba(255,255,255,0.03);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      background:
+        radial-gradient(1000px 500px at 20% 15%, rgba(196,127,42,0.14), transparent),
+        radial-gradient(800px 400px at 90% 85%, rgba(123,63,0,0.10), transparent),
+        var(--bg);
+      color:#fbeedc;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:40px 20px;
+      gap:20px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .leaves-pattern{position:fixed;left:0;top:0;width:100%;height:100%;z-index:-2;pointer-events:none;opacity:0.2}
+
+    .card{
+      width:100%;
+      max-width:960px;
+      background: linear-gradient(180deg, rgba(236, 18, 18, 0.015), rgba(119, 6, 6, 0.01));
+      border-radius:16px;
+      padding:28px;
+      display:grid;
+      grid-template-columns: 320px 1fr;
+      gap:24px;
+      box-shadow: 0 6px 30px rgba(40,20,5,0.7);
+      border:1px solid rgba(255,255,255,0.04);
+      position:relative;z-index:0;
+    }
+
+    .profile{
+      background:linear-gradient(180deg,var(--glass),transparent);
+      border-radius:12px;
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      gap:16px;
+      align-items:center;
+      text-align:center;
+      min-height:360px;
+    }
+
+    .avatar{
+      width:140px;height:140px;border-radius:50%;overflow:hidden;flex:0 0 140px;
+      box-shadow: 0 10px 30px rgba(30,15,5,0.6), inset 0 -6px 20px rgba(0,0,0,0.35);
+      border:4px solid rgba(255,255,255,0.05);
+    }
+    .avatar svg{width:100%;height:100%;display:block}
+
+    h1{font-size:20px;margin:0 0 4px 0;font-weight:700}
+    .role{font-size:13px;color:var(--muted);margin-bottom:6px}
+
+    .contacts{width:100%;display:flex;flex-direction:column;gap:8px}
+    .contact-item{
+      display:flex;align-items:center;gap:12px;padding:8px;border-radius:10px;background:rgba(255,255,255,0.03);
+      font-size:14px;color:var(--muted);
+    }
+    .contact-item a{color:inherit;text-decoration:none}
+
+    .btn{
+      display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;font-weight:600;border:none;cursor:pointer;text-decoration:none
+    }
+    .btn--primary{background:linear-gradient(90deg,var(--accent1),var(--accent2));color:#fffaf5}
+    .btn--outline{background:transparent;border:1px solid rgba(255,255,255,0.08);color:var(--muted)}
+
+    .content{padding:6px 4px}
+    .about{margin-bottom:16px;color:rgba(251,238,220,0.92);line-height:1.6}
+
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{padding:8px 10px;border-radius:999px;background:rgba(255,255,255,0.04);font-size:13px}
+
+    .section{margin-top:18px}
+    .section h3{margin:0 0 10px 0;font-size:14px;color:#ffd27f}
+
+    .links{display:flex;gap:10px;flex-wrap:wrap}
+    .social{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,0.03);font-size:13px}
+
+    footer{margin-top:18px;color:rgba(250,232,210,0.5);font-size:13px}
+
+    @media (max-width:880px){
+      .card{grid-template-columns:1fr;max-width:720px}
+      .profile{flex-direction:row;align-items:center;text-align:left;min-height:auto}
+      .avatar{width:96px;height:96px}
+    }
+
+    .contact-item:hover{transform:translateY(-4px);transition:all .22s}
+    .btn--primary:hover{transform:translateY(-3px);box-shadow:0 8px 30px rgba(196,127,42,0.25)}
+  </style>
+</head>
+<body>
+  <!-- Встроенный повторяющийся принт кленовых листьев -->
+  <svg class="leaves-pattern" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <!-- форма кленового листа -->
+      <path id="maple" d="M75 0 L85 25 L115 15 L100 50 L140 50 L105 75 L130 100 L95 95 L100 130 L75 110 L50 130 L55 95 L20 100 L45 75 L10 50 L50 50 L35 15 L65 25 Z" />
+
+      <pattern id="maplePattern" width="260" height="300" patternUnits="userSpaceOnUse">
+        <rect width="260" height="260" fill="transparent" />
+        <use href="#maple" x="20" y="20" fill="#d96b2b" stroke="#7b3f00" stroke-width="1.2" opacity="0.9"/>
+        <use href="#maple" x="130" y="40" fill="#f4a460" stroke="#7b3f00" stroke-width="1" opacity="0.85" transform="rotate(12 170 70)"/>
+        <use href="#maple" x="20" y="150" fill="#b45309" stroke="#7b3f00" stroke-width="1" opacity="0.95" transform="rotate(-10 90 170)"/>
+        <use href="#maple" x="130" y="160" fill="#c47f2a" stroke="#7b3f00" stroke-width="1" opacity="0.9" transform="rotate(18 190 190)"/>
+      </pattern>
+    </defs>
+
+    <rect width="100%" height="100%" fill="url(#maplePattern)" />
+  </svg>
+
+  <main class="card" role="main">
+    <aside class="profile">
+      <div class="avatar" aria-hidden="true">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="g" x1="0" x2="1">
+              <stop offset="0" stop-color="#c47f2a" />
+              <stop offset="1" stop-color="#7b3f00" />
+            </linearGradient>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#g)" />
+          <g transform="translate(20,18)" fill="#fff">
+            <circle cx="75" cy="42" r="34" opacity="0.95" />
+            <rect x="29" y="90" width="100" height="50" rx="20" />
+          </g>
+        </svg>
+      </div>
+
+      <div>
+        <h1>Ярмушева Юлия</h1>
+        <div class="role">QA Engineer</div>
+      </div>
+
+      <div class="contacts" style="width:100%">
+        <div class="contact-item">📍 Уфа, Россия</div>
+        <div class="contact-item">✉️ <a href="mailto:email@example.com">yyarmusheva@mail.ru</a></div>
+        <div class="contact-item">📞 <a href="tel:+79001234567">+7 996 581-10-85</a></div>
+      </div>
+
+      <div style="display:flex;gap:8px;margin-top:auto;width:100%;justify-content:center">
+        <a class="btn btn--primary" href="#contact">Связаться</a>
+        <a class="btn btn--outline" href="#about">Обо мне</a>
+      </div>
+    </aside>
+
+    <section class="content">
+      <p class="about" id="about">
+        Привет!   
+      </p>
+
+      <div class="section">
+        <h3>Навыки</h3>
+        <div class="chips">
+          <span class="chip">HTML</span>
+          <span class="chip">CSS / SASS</span>
+          <span class="chip">JavaScript</span>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>Проекты</h3>
+        <div class="links">
+          <a class="social" href="#">Портфолио — сайт</a>
+        </div>
+      </div>
+
+      <div class="section" id="contact">
+        <h3>Социальные сети</h3>
+        <div class="links">
+          <a class="social" href="#">LinkedIn</a>
+          <a class="social" href="#">GitHub</a>
+          <a class="social" href="#">Telegram</a>
+        </div>
+      </div>
+
+      <footer>
+        © <span id="year"></span> Ярмушева Юлия — <span class="muted">Свяжитесь для сотрудничества</span>
+      </footer>
+    </section>
+  </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
